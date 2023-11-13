@@ -8,6 +8,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Order {
 
@@ -59,7 +60,11 @@ public class Order {
                 .allMatch(category -> category.equals(MenuCategory.BEVERAGE));
     }
 
-    public Map<MenuItem, Integer> getMenus() {
-        return menus;
+    @Override
+    public String toString() {
+        return menus.entrySet().stream()
+                .map(entry -> entry.getKey().toString() + " " + entry.getValue() + "개\n")
+                .collect(Collectors.joining());
     }
+
 }
