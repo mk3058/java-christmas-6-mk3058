@@ -1,27 +1,28 @@
 package christmas.planner.controller;
 
 import christmas.user.domain.Order;
-import christmas.user.service.OrderService;
+import christmas.user.domain.VisitDate;
+import christmas.user.service.UserService;
 import christmas.view.InputView;
 import java.util.Map;
 
 public class PlannerController {
 
     private final InputView inputView = new InputView();
-    private final OrderService orderService = new OrderService();
+    private final UserService userService = new UserService();
 
     public void start() {
-        int date = getDate();
+        VisitDate date = getDate();
         Order order = getOrder();
 
         System.out.println(date);
         System.out.println(order.getMenus().toString());
     }
 
-    private int getDate() {
+    private VisitDate getDate() {
         while (true) {
             try {
-                return inputView.getDate();
+                return userService.newVisitDate(inputView.getDate());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
@@ -31,7 +32,7 @@ public class PlannerController {
     private Order getOrder() {
         while (true) {
             try {
-                return orderService.newOrder(getMenus());
+                return userService.newOrder(getMenus());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }

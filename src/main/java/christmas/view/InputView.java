@@ -16,11 +16,7 @@ public class InputView {
     public int getDate() {
         System.out.println(Input.DATE_INPUT_PROMPT.toString());
         String input = Console.readLine();
-        int date = toInteger(input);
-        if (!hasCorrectRange(date, 1, 31)) {
-            throw new IllegalArgumentException(Error.INVALUD_DATE.toString());
-        }
-        return date;
+        return toInteger(input);
     }
 
     public Map<String, Integer> getMenus() {
@@ -48,10 +44,6 @@ public class InputView {
 
     private boolean hasCorrectSize(List<String> tokens, int expected) {
         return tokens.size() == expected;
-    }
-
-    private boolean hasCorrectRange(int num, int min, int max) {
-        return min <= num && num <= max;
     }
 
     private int toInteger(String num) {
