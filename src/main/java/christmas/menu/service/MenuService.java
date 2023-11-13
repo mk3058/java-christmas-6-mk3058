@@ -1,21 +1,26 @@
 package christmas.menu.service;
 
-import christmas.menu.domain.MenuItem;
-import christmas.menu.domain.repository.MenuRepository;
+import christmas.menu.domain.MenuCategory;
 import christmas.menu.presentation.dto.MenuResponse;
 import java.util.List;
 
 public class MenuService {
 
-    private final MenuRepository menuRepository = new MenuRepository();
+    public List<MenuResponse> findItemsByCategory(MenuCategory category) {
+        return category.menus().stream()
+                .map(MenuResponse::fromMenuItem)
+                .toList();
+    }
 
-    public List<MenuResponse> findItemsByCategory(Class<? extends Enum<?>> category) {
-        List<MenuItem> items = menuRepository.findItemsByCategory(category);
-        return items.stream().map(MenuResponse::fromMenuItem).toList();
+    public List<MenuResponse> findAllItems() {
+        return MenuCategory.allMenus().stream()
+                .map(MenuResponse::fromMenuItem)
+                .toList();
     }
 
     public MenuResponse findItemByName(String name) {
-        return menuRepository.findItemByName(name).map(MenuResponse::fromMenuItem)
-                .orElseThrow(() -> new IllegalArgumentException());
+        return MenuCategory.findMenuItemByName(name)
+                .map(MenuResponse::fromMenuItem)
+                .orElseThrow(IllegalArgumentException::new);
     }
 }
