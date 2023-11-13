@@ -14,9 +14,7 @@ public class PlannerController {
     public void start() {
         VisitDate date = getDate();
         Order order = getOrder();
-
-        System.out.println(date);
-        System.out.println(order.getMenus().toString());
+        //TODO 이후 기능 구현
     }
 
     private VisitDate getDate() {

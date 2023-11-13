@@ -1,7 +1,11 @@
 package christmas;
 
+import christmas.planner.controller.PlannerController;
+
 public class Application {
     public static void main(String[] args) {
-        // TODO: 프로그램 구현
+        PlannerController plannerController = new PlannerController();
+
+        plannerController.start();
     }
 }
