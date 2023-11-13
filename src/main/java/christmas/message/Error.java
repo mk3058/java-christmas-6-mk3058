@@ -9,7 +9,7 @@ public enum Error {
     ORDER_ITEM_COMPOSED_OF_BEVERAGE("음료만 주문할 수 없습니다.");
 
     private final static String PREFIX = "[ERROR] ";
-    private final static String POSTFIX = " 다시 입력해 주세요.";
+    private final static String SUFFIX = " 다시 입력해 주세요.";
     private final String message;
 
     Error(String message) {
@@ -18,6 +18,6 @@ public enum Error {
 
     @Override
     public String toString() {
-        return PREFIX + message + POSTFIX;
+        return PREFIX + message + SUFFIX;
     }
 }
