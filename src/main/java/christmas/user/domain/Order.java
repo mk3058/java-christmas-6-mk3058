@@ -30,7 +30,7 @@ public class Order {
         if (!isOrderQuantityPositive(input) || hasDuplicate(input)) {
             throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
         }
-        if (isOrderQuantityWithinLimit(input)) {
+        if (!isOrderQuantityWithinLimit(input)) {
             throw new IllegalArgumentException(Error.MAXIMUM_ORDER_COUNT_EXCEEDED.toString());
         }
         if (isComposedOfBeverage(input)) {
@@ -45,7 +45,7 @@ public class Order {
 
     private boolean isOrderQuantityWithinLimit(Map<MenuItem, Integer> input) {
         return input.values().stream()
-                .reduce(0, Integer::sum) < MAXIMUM_PURCHASE_COUNT;
+                .reduce(0, Integer::sum) <= MAXIMUM_PURCHASE_COUNT;
     }
 
     private boolean isOrderQuantityPositive(Map<MenuItem, Integer> input) {
@@ -56,7 +56,10 @@ public class Order {
     private boolean isComposedOfBeverage(Map<MenuItem, Integer> input) {
         return input.keySet().stream()
                 .map(MenuCategory::findCategoryByMenuItem)
-                .allMatch(category -> category.orElseThrow(IllegalArgumentException::new)
-                        .equals(MenuCategory.BEVERAGE));
+                .allMatch(category -> category.equals(MenuCategory.BEVERAGE));
+    }
+
+    public Map<MenuItem, Integer> getMenus() {
+        return menus;
     }
 }
