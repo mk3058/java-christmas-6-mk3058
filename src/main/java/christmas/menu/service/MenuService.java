@@ -9,8 +9,8 @@ public class MenuService {
 
     private final MenuRepository menuRepository = new MenuRepository();
 
-    public List<MenuResponse> findItemsByCategory(Enum<?> category) {
-        List<MenuItem> items = menuRepository.findItemsByCategory(category.getDeclaringClass());
+    public List<MenuResponse> findItemsByCategory(Class<? extends Enum<?>> category) {
+        List<MenuItem> items = menuRepository.findItemsByCategory(category);
         return items.stream().map(MenuResponse::fromMenuItem).toList();
     }
 
