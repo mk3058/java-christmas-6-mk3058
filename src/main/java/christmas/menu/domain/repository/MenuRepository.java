@@ -1,15 +1,20 @@
-package christmas.menu.domain;
+package christmas.menu.domain.repository;
 
+import christmas.menu.domain.Appetizer;
+import christmas.menu.domain.Beverage;
+import christmas.menu.domain.Desert;
+import christmas.menu.domain.Main;
+import christmas.menu.domain.MenuItem;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-public class Menu {
+public class MenuRepository {
 
     private final List<MenuItem> items = new ArrayList<>();
 
-    public Menu() {
+    public MenuRepository() {
         addItemsByCategory(Appetizer.class);
         addItemsByCategory(Main.class);
         addItemsByCategory(Desert.class);
