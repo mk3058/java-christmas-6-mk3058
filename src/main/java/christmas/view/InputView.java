@@ -1,6 +1,8 @@
 package christmas.view;
 
 import camp.nextstep.edu.missionutils.Console;
+import christmas.message.Error;
+import christmas.message.Input;
 import christmas.util.StringUtil;
 import java.util.HashMap;
 import java.util.List;
@@ -12,17 +14,17 @@ public class InputView {
     private static final String QUANTITY_DELIMITER = "-";
 
     public int getDate() {
-        System.out.println(InputMessage.DATE_INPUT_PROMPT.toString());
+        System.out.println(Input.DATE_INPUT_PROMPT.toString());
         String input = Console.readLine();
         int date = toInteger(input);
         if (!hasCorrectRange(date, 1, 31)) {
-            throw new IllegalArgumentException(ErrorMessage.INVALUD_DATE.toString());
+            throw new IllegalArgumentException(Error.INVALUD_DATE.toString());
         }
         return date;
     }
 
     public Map<String, Integer> getMenus() {
-        System.out.println(InputMessage.ORDER_INPUT_PROMPT.toString());
+        System.out.println(Input.ORDER_INPUT_PROMPT.toString());
         String input = Console.readLine();
         return parseMenu(input);
     }
@@ -32,12 +34,12 @@ public class InputView {
         List<String> menuTokens = StringUtil.split(input, MENU_DELIMITER);
 
         if (menuTokens.isEmpty()) {
-            throw new IllegalArgumentException(ErrorMessage.INVALUD_ORDER.toString());
+            throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
         }
         menuTokens.forEach(menuToken -> {
             List<String> order = StringUtil.split(menuToken, QUANTITY_DELIMITER);
             if (!hasCorrectSize(order, 2)) {
-                throw new IllegalArgumentException(ErrorMessage.INVALUD_ORDER.toString());
+                throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
             }
             orders.put(order.get(0), toInteger(order.get(1)));
         });
@@ -56,7 +58,7 @@ public class InputView {
         try {
             return Integer.parseInt(num);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(ErrorMessage.NOT_A_NUMBER.toString());
+            throw new IllegalArgumentException(Error.NOT_A_NUMBER.toString());
         }
     }
 }

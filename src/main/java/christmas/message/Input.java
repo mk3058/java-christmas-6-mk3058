@@ -1,6 +1,6 @@
-package christmas.view;
+package christmas.message;
 
-public enum InputMessage {
+public enum Input {
 
     WELCOME("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다."),
     DATE_INPUT_PROMPT("12월 중 식당 예상 방문 날짜는 언제인가요? (숫자만 입력해 주세요!)"),
@@ -16,7 +16,7 @@ public enum InputMessage {
 
     private final String message;
 
-    InputMessage(String message) {
+    Input(String message) {
         this.message = message;
     }
 
