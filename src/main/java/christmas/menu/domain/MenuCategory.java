@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
-import java.util.Optional;
 
 public enum MenuCategory {
 
@@ -30,15 +29,17 @@ public enum MenuCategory {
                 .toList();
     }
 
-    public static Optional<MenuItem> findMenuItemByName(String name) {
+    public static MenuItem findMenuItemByName(String name) {
         return MenuCategory.allMenus().stream()
                 .filter(menuItem -> menuItem.getName().equals(name))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
-    public static Optional<MenuCategory> findCategoryByMenuItem(MenuItem menuItem) {
+    public static MenuCategory findCategoryByMenuItem(MenuItem menuItem) {
         return Arrays.stream(MenuCategory.values())
                 .filter(menuCategory -> menuCategory.menus().contains(menuItem))
-                .findFirst();
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 }

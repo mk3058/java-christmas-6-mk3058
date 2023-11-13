@@ -7,8 +7,6 @@ import java.math.BigDecimal;
 public record MenuResponse(MenuCategory category, String name, BigDecimal price) {
 
     public static MenuResponse fromMenuItem(MenuItem item) {
-        MenuCategory category = MenuCategory.findCategoryByMenuItem(item).orElseThrow(IllegalArgumentException::new);
-
-        return new MenuResponse(category, item.getName(), item.getPrice());
+        return new MenuResponse(MenuCategory.findCategoryByMenuItem(item), item.getName(), item.getPrice());
     }
 }

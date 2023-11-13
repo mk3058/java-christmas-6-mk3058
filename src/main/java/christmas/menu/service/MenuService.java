@@ -19,8 +19,6 @@ public class MenuService {
     }
 
     public MenuResponse findItemByName(String name) {
-        return MenuCategory.findMenuItemByName(name)
-                .map(MenuResponse::fromMenuItem)
-                .orElseThrow(IllegalArgumentException::new);
+        return MenuResponse.fromMenuItem(MenuCategory.findMenuItemByName(name));
     }
 }
