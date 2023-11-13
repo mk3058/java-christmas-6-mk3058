@@ -25,4 +25,9 @@ public enum Beverage implements MenuItem {
     public BigDecimal getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -25,4 +25,9 @@ public enum Appetizer implements MenuItem {
     public BigDecimal getPrice() {
         return price;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }
