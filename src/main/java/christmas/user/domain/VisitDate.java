@@ -27,7 +27,8 @@ public class VisitDate {
     }
 
     public boolean isWeekend() {
-        return date.getDayOfWeek().getValue() > DayOfWeek.FRIDAY.getValue();
+        DayOfWeek day = date.getDayOfWeek();
+        return day.equals(DayOfWeek.FRIDAY) || day.equals(DayOfWeek.SATURDAY);
     }
 
     private void validate(int date) {
