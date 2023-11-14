@@ -22,6 +22,10 @@ public class VisitDate {
         return date.getDayOfWeek();
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
     public boolean isWeekend() {
         return date.getDayOfWeek().getValue() > DayOfWeek.FRIDAY.getValue();
     }
