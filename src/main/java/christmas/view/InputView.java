@@ -16,13 +16,21 @@ public class InputView {
     public int getDate() {
         System.out.println(Input.DATE_INPUT_PROMPT.toString());
         String input = Console.readLine();
-        return toInteger(input);
+        try {
+            return toInteger(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(Error.INVALUD_DATE.toString());
+        }
     }
 
     public Map<String, Integer> getMenus() {
         System.out.println(Input.ORDER_INPUT_PROMPT.toString());
         String input = Console.readLine();
-        return parseMenu(input);
+        try {
+            return parseMenu(input);
+        } catch (IllegalArgumentException e) {
+            throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
+        }
     }
 
     private Map<String, Integer> parseMenu(String input) {
