@@ -5,6 +5,7 @@ import christmas.menu.domain.MenuItem;
 import christmas.message.Error;
 import java.math.BigDecimal;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -67,4 +68,7 @@ public class Order {
                 .collect(Collectors.joining());
     }
 
+    public Map<MenuItem, Integer> getMenus() {
+        return new HashMap<>(menus);
+    }
 }
