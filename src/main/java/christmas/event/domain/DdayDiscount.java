@@ -29,6 +29,6 @@ public class DdayDiscount extends Event {
     }
 
     private long calculateDday(VisitDate visitDate) {
-        return ChronoUnit.DAYS.between(visitDate.getDate(), startAt);
+        return ChronoUnit.DAYS.between(startAt, visitDate.getDate());
     }
 }
