@@ -3,9 +3,9 @@ package christmas.message;
 public enum Output {
 
     WELCOME("안녕하세요! 우테코 식당 12월 이벤트 플래너입니다."),
-    PROMOTION_PROMPT("12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
+    PROMOTION_PROMPT("12월 %s일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!"),
     ORDERED_MENU("\n<주문 메뉴>\n%s"),
-    TOTAL_COST("\n<할인 전 총주문 금액>\n%s"),
+    TOTAL_COST("<할인 전 총주문 금액>\n%s"),
     GIFT_PROMOTION("\n<증정 메뉴>\n%s"),
     PROMOTION_LIST("\n<혜택 내역>\n%s"),
     PROMOTION_PRICE("\n<총혜택 금액>\n%s"),
