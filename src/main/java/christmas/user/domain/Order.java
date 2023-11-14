@@ -64,7 +64,7 @@ public class Order {
     @Override
     public String toString() {
         return menus.entrySet().stream()
-                .map(entry -> entry.getKey().toString() + " " + entry.getValue() + "개\n")
+                .map(entry -> entry.getKey().toString() + " " + entry.getValue() + "개")
                 .collect(Collectors.joining());
     }
 

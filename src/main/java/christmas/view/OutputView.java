@@ -58,13 +58,13 @@ public class OutputView {
     }
 
     private void printTotalBenefitAmount(List<EventResult> results) {
-        BigDecimal totalBenefitAmount = getTotalBenefitAmount(results);
+        BigDecimal totalBenefitAmount = getTotalBenefitAmount(results).multiply(BigDecimal.valueOf(-1));
 
         System.out.println(Output.PROMOTION_PRICE.toString(formattingPrice(totalBenefitAmount)));
     }
 
     private void printFinalPrice(List<EventResult> results, Order order) {
-        BigDecimal finalPrice = order.getPrice().subtract(getTotalBenefitAmount(results));
+        BigDecimal finalPrice = order.getPrice().subtract(getTotalDiscountAmount(results));
         System.out.println(Output.COST_AFTER_PROMOTION.toString(formattingPrice(finalPrice)));
     }
 
@@ -75,7 +75,14 @@ public class OutputView {
     private BigDecimal getTotalBenefitAmount(List<EventResult> results) {
         return results.stream()
                 .map(EventResult::benefitAmount)
-                .reduce(BigDecimal.ZERO, BigDecimal::subtract);
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    private BigDecimal getTotalDiscountAmount(List<EventResult> results) {
+        return results.stream()
+                .filter(result -> !result.eventName().equals(EventName.GIFT.getName()))
+                .map(EventResult::benefitAmount)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
     private String formattingPrice(BigDecimal price) {
