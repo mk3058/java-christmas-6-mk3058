@@ -6,9 +6,7 @@ import christmas.message.Error;
 import java.math.BigDecimal;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Order {
@@ -29,20 +27,9 @@ public class Order {
     }
 
     private void validate(Map<MenuItem, Integer> input) {
-        if (!isOrderQuantityPositive(input) || hasDuplicate(input)) {
+        if (!isOrderQuantityPositive(input) || !isOrderQuantityWithinLimit(input) || isComposedOfBeverage(input)) {
             throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
         }
-        if (!isOrderQuantityWithinLimit(input)) {
-            throw new IllegalArgumentException(Error.MAXIMUM_ORDER_COUNT_EXCEEDED.toString());
-        }
-        if (isComposedOfBeverage(input)) {
-            throw new IllegalArgumentException(Error.ORDER_ITEM_COMPOSED_OF_BEVERAGE.toString());
-        }
-    }
-
-    private boolean hasDuplicate(Map<MenuItem, Integer> input) {
-        Set<MenuItem> menusWithoutDuplicates = new HashSet<>(input.keySet());
-        return menusWithoutDuplicates.size() != input.size();
     }
 
     private boolean isOrderQuantityWithinLimit(Map<MenuItem, Integer> input) {

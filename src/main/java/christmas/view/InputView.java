@@ -42,7 +42,7 @@ public class InputView {
         }
         menuTokens.forEach(menuToken -> {
             List<String> order = StringUtil.split(menuToken, QUANTITY_DELIMITER);
-            if (!hasCorrectSize(order, 2)) {
+            if (!hasCorrectSize(order, 2) || orders.containsKey(order.get(0))) {
                 throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
             }
             orders.put(order.get(0), toInteger(order.get(1)));
