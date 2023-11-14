@@ -4,16 +4,21 @@ import christmas.user.domain.Order;
 import christmas.user.domain.VisitDate;
 import christmas.user.service.UserService;
 import christmas.view.InputView;
+import christmas.view.OutputView;
 import java.util.Map;
 
 public class PlannerController {
 
     private final InputView inputView = new InputView();
+    private final OutputView outputView = new OutputView();
     private final UserService userService = new UserService();
 
     public void start() {
         VisitDate date = getDate();
         Order order = getOrder();
+
+        outputView.printOrder(order);
+        outputView.printTotalPrice(order);
         //TODO 이후 기능 구현
     }
 
