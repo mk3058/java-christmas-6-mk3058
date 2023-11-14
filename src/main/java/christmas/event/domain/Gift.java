@@ -7,7 +7,8 @@ import java.time.LocalDate;
 
 public class Gift extends Event {
 
-    private static final String GIFT_NAME = "샴페인";
+    public static final String GIFT_NAME = "샴페인";
+    public static final String AMOUNT = "1개";
     private static final BigDecimal BENEFIT_AMOUNT = BigDecimal.valueOf(25_000);
     private static final BigDecimal BENEFIT_THRESHOLD = BigDecimal.valueOf(120_000);
 
