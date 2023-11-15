@@ -12,7 +12,7 @@ public class DdayDiscount extends DiscountEvent {
     private static final BigDecimal DISOUNT_INCREASE_AMOUNT = BigDecimal.valueOf(100);
 
     public DdayDiscount() {
-        this.eventName = EventName.CHRISTMAS_D_DAY.getName();
+        this.eventName = "크리스마스 디데이 할인";
         this.startAt = LocalDate.of(2023, 12, 1);
         this.endAt = LocalDate.of(2023, 12, 26);
     }

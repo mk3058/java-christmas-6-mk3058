@@ -12,7 +12,7 @@ public class WeekendDiscount extends DiscountEvent {
     private static final BigDecimal DISCOUNT_AMOUNT_PER_MAIN = BigDecimal.valueOf(2_023);
 
     public WeekendDiscount() {
-        this.eventName = EventName.WEEKEND.getName();
+        this.eventName = "주말 할인";
         this.startAt = LocalDate.of(2023, 12, 1);
         this.endAt = LocalDate.of(2024, 1, 1);
     }

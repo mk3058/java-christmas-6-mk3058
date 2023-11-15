@@ -1,7 +1,7 @@
 package christmas.view;
 
 import christmas.event.domain.Badge;
-import christmas.event.domain.EventName;
+import christmas.event.domain.DiscountEvent;
 import christmas.event.domain.GiftEvent;
 import christmas.event.presentation.dto.EventResult;
 import christmas.message.Output;
@@ -82,7 +82,7 @@ public class OutputView {
 
     private BigDecimal getTotalDiscountAmount(List<EventResult> results) {
         return results.stream()
-                .filter(result -> !result.event().getEventName().equals(EventName.GIFT.getName()))
+                .filter(result -> result.event() instanceof DiscountEvent)
                 .map(EventResult::benefitAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }

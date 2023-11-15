@@ -12,7 +12,7 @@ public class SpecialDiscount extends DiscountEvent {
     private static final LocalDate CHRISTMAS = LocalDate.of(2023, 12, 25);
 
     public SpecialDiscount() {
-        this.eventName = EventName.SPECIAL.getName();
+        this.eventName = "특별 할인";
         this.startAt = LocalDate.of(2023, 12, 1);
         this.endAt = LocalDate.of(2024, 1, 1);
     }
