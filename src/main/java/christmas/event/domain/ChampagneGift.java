@@ -5,14 +5,14 @@ import christmas.user.domain.VisitDate;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-public class Gift extends Event {
+public class ChampagneGift extends GiftEvent {
 
-    public static final String GIFT_NAME = "샴페인";
-    public static final String AMOUNT = "1개";
-    private static final BigDecimal BENEFIT_AMOUNT = BigDecimal.valueOf(25_000);
+    private static final int AMOUNT = 1;
     private static final BigDecimal BENEFIT_THRESHOLD = BigDecimal.valueOf(120_000);
 
-    public Gift() {
+    public ChampagneGift() {
+        this.giftName = "샴페인";
+        this.giftPrice = BigDecimal.valueOf(25_0000);
         this.eventName = EventName.GIFT.getName();
         this.startAt = LocalDate.of(2023, 12, 1);
         this.endAt = LocalDate.of(2024, 1, 1);
@@ -28,8 +28,11 @@ public class Gift extends Event {
 
     @Override
     public BigDecimal getBenefitAmount(VisitDate visitDate, Order order) {
-        return BENEFIT_AMOUNT;
+        return this.giftPrice;
     }
 
-
+    @Override
+    public int getGiftAmount() {
+        return AMOUNT;
+    }
 }

@@ -1,8 +1,8 @@
 package christmas.event.service;
 
+import christmas.event.domain.ChampagneGift;
 import christmas.event.domain.DdayDiscount;
 import christmas.event.domain.Event;
-import christmas.event.domain.Gift;
 import christmas.event.domain.SpecialDiscount;
 import christmas.event.domain.WeekdayDiscount;
 import christmas.event.domain.WeekendDiscount;
@@ -15,28 +15,28 @@ import java.util.List;
 
 public class EventService {
 
-    List<Event> events = new ArrayList<>();
+    List<Event> discountEvents = new ArrayList<>();
 
     public EventService() {
-        events.addAll(Arrays.asList(
+        discountEvents.addAll(Arrays.asList(
                 new DdayDiscount(),
                 new SpecialDiscount(),
                 new WeekdayDiscount(),
                 new WeekendDiscount(),
-                new Gift()
+                new ChampagneGift()
         ));
     }
 
     public List<EventResult> applyEvents(VisitDate visitDate, Order order) {
-        List<Event> applicableEvents = findApplicableEvents(visitDate, order);
+        List<Event> applicableDiscountEvents = findApplicableEvents(visitDate, order);
 
-        return applicableEvents.stream()
-                .map(event -> new EventResult(event.getEventName(), event.getBenefitAmount(visitDate, order)))
+        return applicableDiscountEvents.stream()
+                .map(event -> new EventResult(event, event.getBenefitAmount(visitDate, order)))
                 .toList();
     }
 
     private List<Event> findApplicableEvents(VisitDate visitDate, Order order) {
-        return events.stream()
+        return discountEvents.stream()
                 .filter(event -> event.isEligible(visitDate, order))
                 .toList();
     }

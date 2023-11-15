@@ -15,10 +15,10 @@ public class UserService {
 
         try {
             input.forEach((key, value) -> order.put(MenuCategory.findMenuItemByName(key), value));
+            return new Order(order);
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
         }
-        return new Order(order);
     }
 
     public VisitDate newVisitDate(int date) {

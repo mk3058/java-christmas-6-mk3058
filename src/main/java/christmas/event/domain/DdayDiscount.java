@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
-public class DdayDiscount extends Event {
+public class DdayDiscount extends DiscountEvent {
 
     private static final BigDecimal INITIAL_DISCOUNT_AMOUNT = BigDecimal.valueOf(1_000);
     private static final BigDecimal DISOUNT_INCREASE_AMOUNT = BigDecimal.valueOf(100);

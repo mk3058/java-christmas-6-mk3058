@@ -2,7 +2,7 @@ package christmas.view;
 
 import christmas.event.domain.Badge;
 import christmas.event.domain.EventName;
-import christmas.event.domain.Gift;
+import christmas.event.domain.GiftEvent;
 import christmas.event.presentation.dto.EventResult;
 import christmas.message.Output;
 import christmas.user.domain.Order;
@@ -36,13 +36,15 @@ public class OutputView {
     }
 
     private void printGiftMenu(List<EventResult> results) {
-        String giftDetails = NOTHING;
-        Optional<EventResult> gift = results.stream()
-                .filter(result -> result.eventName().equals(EventName.GIFT.getName()))
-                .findFirst();
-        if (gift.isPresent()) {
-            giftDetails = String.join(" ", Gift.GIFT_NAME, Gift.AMOUNT);
-        }
+        Optional<GiftEvent> giftEvent = results.stream()
+                .map(EventResult::event)
+                .filter(event -> event instanceof GiftEvent)
+                .findFirst()
+                .map(event -> (GiftEvent) event);
+        String giftDetails = giftEvent
+                .map(gift -> String.join(" ", gift.getGiftName(), gift.getGiftAmount() + "개"))
+                .orElse(NOTHING);
+
         System.out.println(Output.GIFT_PROMOTION.toString(giftDetails));
     }
 
@@ -80,7 +82,7 @@ public class OutputView {
 
     private BigDecimal getTotalDiscountAmount(List<EventResult> results) {
         return results.stream()
-                .filter(result -> !result.eventName().equals(EventName.GIFT.getName()))
+                .filter(result -> !result.event().getEventName().equals(EventName.GIFT.getName()))
                 .map(EventResult::benefitAmount)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }

@@ -6,7 +6,7 @@ import java.math.BigDecimal;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
-public class SpecialDiscount extends Event {
+public class SpecialDiscount extends DiscountEvent {
 
     private static final BigDecimal DISCOUNT_AMOUNT = new BigDecimal(1_000);
     private static final LocalDate CHRISTMAS = LocalDate.of(2023, 12, 25);

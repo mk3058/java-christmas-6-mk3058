@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Map.Entry;
 
-public class WeekendDiscount extends Event {
+public class WeekendDiscount extends DiscountEvent {
 
     private static final BigDecimal DISCOUNT_AMOUNT_PER_MAIN = BigDecimal.valueOf(2_023);
 
