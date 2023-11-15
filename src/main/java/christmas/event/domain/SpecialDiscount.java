@@ -19,7 +19,7 @@ public class SpecialDiscount extends DiscountEvent {
 
     @Override
     public boolean isEligible(VisitDate visitDate, Order order) {
-        if (!hasCorrectAmountAndDate(visitDate, order) || !isSundayOfChristmas(visitDate)) {
+        if (!hasCorrectAmountAndDate(visitDate, order) || !isSundayOrChristmas(visitDate)) {
             return false;
         }
         return true;
@@ -30,7 +30,7 @@ public class SpecialDiscount extends DiscountEvent {
         return DISCOUNT_AMOUNT;
     }
 
-    private boolean isSundayOfChristmas(VisitDate visitDate) {
+    private boolean isSundayOrChristmas(VisitDate visitDate) {
         return visitDate.getDayOfWeek() == DayOfWeek.SUNDAY || visitDate.getDate().isEqual(CHRISTMAS);
     }
 }
