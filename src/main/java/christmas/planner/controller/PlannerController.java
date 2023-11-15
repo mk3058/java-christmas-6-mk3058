@@ -9,7 +9,6 @@ import christmas.user.service.UserService;
 import christmas.view.InputView;
 import christmas.view.OutputView;
 import java.util.List;
-import java.util.Map;
 
 public class PlannerController {
 
@@ -22,9 +21,9 @@ public class PlannerController {
         System.out.println(Output.WELCOME.toString());
         VisitDate visitDate = getDate();
         Order order = getOrder();
-
-        List<EventResult> results = eventService.applyEvents(visitDate, order);
         System.out.println(Output.PROMOTION_PROMPT.toString(String.valueOf(visitDate.getDayOfMonth())));
+        List<EventResult> results = eventService.applyEvents(visitDate, order);
+
         outputView.printOrder(order);
         outputView.printTotalPrice(order);
         outputView.printEventResult(results, order);
@@ -43,17 +42,7 @@ public class PlannerController {
     private Order getOrder() {
         while (true) {
             try {
-                return userService.newOrder(getMenus());
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-    }
-
-    private Map<String, Integer> getMenus() {
-        while (true) {
-            try {
-                return inputView.getMenus();
+                return userService.newOrder(inputView.getMenus());
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());
             }
