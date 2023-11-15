@@ -32,8 +32,14 @@ public class Order {
     }
 
     private void validate(Map<MenuItem, Integer> input) {
-        if (!isOrderQuantityPositive(input) || !isOrderQuantityWithinLimit(input) || isComposedOfBeverage(input)) {
+        if (!isOrderQuantityPositive(input)) {
             throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
+        }
+        if (!isOrderQuantityWithinLimit(input)) {
+            throw new IllegalArgumentException(Error.MAXIMUM_ORDER_COUNT_EXCEEDED.toString());
+        }
+        if (isComposedOfBeverage(input)) {
+            throw new IllegalArgumentException(Error.ORDER_ITEM_COMPOSED_OF_BEVERAGE.toString());
         }
     }
 

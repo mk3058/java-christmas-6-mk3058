@@ -2,6 +2,7 @@ package christmas.planner.controller;
 
 import christmas.event.presentation.dto.EventResult;
 import christmas.event.service.EventService;
+import christmas.message.Error;
 import christmas.message.Output;
 import christmas.user.domain.Order;
 import christmas.user.domain.VisitDate;
@@ -34,7 +35,7 @@ public class PlannerController {
             try {
                 return userService.newVisitDate(inputView.getDate());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Error.INVALUD_DATE.toString());
             }
         }
     }
@@ -44,7 +45,7 @@ public class PlannerController {
             try {
                 return userService.newOrder(inputView.getMenus());
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                System.out.println(Error.INVALUD_ORDER.toString());
             }
         }
     }
