@@ -17,8 +17,8 @@ public class InputView {
         System.out.println(Input.DATE_INPUT_PROMPT.toString());
         String input = Console.readLine();
         try {
-            return toInteger(input);
-        } catch (IllegalArgumentException e) {
+            return Integer.parseInt(input);
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException(Error.INVALUD_DATE.toString());
         }
     }
@@ -28,7 +28,7 @@ public class InputView {
         String input = Console.readLine();
         try {
             return parseMenu(input);
-        } catch (IllegalArgumentException e) {
+        } catch (Exception e) {
             throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
         }
     }
@@ -45,20 +45,12 @@ public class InputView {
             if (!hasCorrectSize(order, 2) || orders.containsKey(order.get(0))) {
                 throw new IllegalArgumentException(Error.INVALUD_ORDER.toString());
             }
-            orders.put(order.get(0), toInteger(order.get(1)));
+            orders.put(order.get(0), Integer.parseInt(order.get(1)));
         });
         return orders;
     }
 
     private boolean hasCorrectSize(List<String> tokens, int expected) {
         return tokens.size() == expected;
-    }
-
-    private int toInteger(String num) {
-        try {
-            return Integer.parseInt(num);
-        } catch (NumberFormatException e) {
-            throw new IllegalArgumentException(Error.NOT_A_NUMBER.toString());
-        }
     }
 }
