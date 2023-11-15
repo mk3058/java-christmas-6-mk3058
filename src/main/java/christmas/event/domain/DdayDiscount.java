@@ -14,7 +14,7 @@ public class DdayDiscount extends DiscountEvent {
     public DdayDiscount() {
         this.eventName = "크리스마스 디데이 할인";
         this.startAt = LocalDate.of(2023, 12, 1);
-        this.endAt = LocalDate.of(2023, 12, 26);
+        this.endAt = LocalDate.of(2023, 12, 25);
     }
 
     @Override

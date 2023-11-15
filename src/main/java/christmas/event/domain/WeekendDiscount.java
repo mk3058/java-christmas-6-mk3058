@@ -14,7 +14,7 @@ public class WeekendDiscount extends DiscountEvent {
     public WeekendDiscount() {
         this.eventName = "주말 할인";
         this.startAt = LocalDate.of(2023, 12, 1);
-        this.endAt = LocalDate.of(2024, 1, 1);
+        this.endAt = LocalDate.of(2024, 12, 31);
     }
 
     @Override
