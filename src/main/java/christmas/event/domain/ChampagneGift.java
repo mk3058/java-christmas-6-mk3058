@@ -12,7 +12,7 @@ public class ChampagneGift extends GiftEvent {
 
     public ChampagneGift() {
         this.giftName = "샴페인";
-        this.giftPrice = BigDecimal.valueOf(25_0000);
+        this.giftPrice = BigDecimal.valueOf(25_000);
         this.eventName = "증정 이벤트";
         this.startAt = LocalDate.of(2023, 12, 1);
         this.endAt = LocalDate.of(2024, 12, 31);
