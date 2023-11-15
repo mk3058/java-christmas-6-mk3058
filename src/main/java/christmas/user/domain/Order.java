@@ -22,7 +22,12 @@ public class Order {
 
     public BigDecimal getPrice() {
         return menus.entrySet().stream()
-                .map(entry -> entry.getKey().getPrice().multiply(BigDecimal.valueOf(entry.getValue())))
+                .map(entry -> {
+                    MenuItem item = entry.getKey();
+                    int quantity = entry.getValue();
+
+                    return item.getPrice().multiply(BigDecimal.valueOf(quantity));
+                })
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
