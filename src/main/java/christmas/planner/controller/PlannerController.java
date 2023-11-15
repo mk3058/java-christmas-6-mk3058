@@ -24,7 +24,7 @@ public class PlannerController {
         Order order = getOrder();
 
         List<EventResult> results = eventService.applyEvents(visitDate, order);
-        System.out.println(Output.PROMOTION_PROMPT.toString(String.valueOf(visitDate.getDate().getDayOfMonth())));
+        System.out.println(Output.PROMOTION_PROMPT.toString(String.valueOf(visitDate.getDayOfMonth())));
         outputView.printOrder(order);
         outputView.printTotalPrice(order);
         outputView.printEventResult(results, order);

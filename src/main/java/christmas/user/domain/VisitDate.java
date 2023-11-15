@@ -22,6 +22,10 @@ public class VisitDate {
         return date.getDayOfWeek();
     }
 
+    public int getDayOfMonth() {
+        return date.getDayOfMonth();
+    }
+
     public LocalDate getDate() {
         return date;
     }
